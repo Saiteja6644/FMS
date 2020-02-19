@@ -3,21 +3,22 @@ package com.cg.fms.dao;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.cg.fms.bean.User;
 import com.cg.fms.exception.FlightException;
 
 public class UserDaoImpl implements UserDao {
 
-	private List<User> list;
-	private Map<Integer,User> map;
+	private List<User> userList;
+	//private Map<Integer,User> map;
 	
-	public UserDaoImpl(List<User> list, Map<Integer,User> map)
+	public UserDaoImpl()
 	{
-		list = new ArrayList<User>();
-		map = new HashMap<>();
+		userList = new ArrayList<User>();
 	}
 	
 
@@ -25,55 +26,63 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User addUser(User user) throws FlightException   {
 		
-		boolean flag = list.contains(user.getUserId());
-		if(flag)
-		{
-			throw new FlightException("Id already exists");
-	}
-	
-	list.add(user);
-	
-		return user;
+	 boolean flag = userList.stream().anyMatch(p-> p.getUserId()==user.getUserId());
+	 if(flag==true)
+	 {
+		 throw new FlightException("Id already exists");
+	 }
+	 userList.add(user);
+	 return user;
 	}
 
 	@Override
 	public User viewUser(int userId) throws FlightException {
 		
 	User user = null;
-	if(!list.contains(userId))	
+
+	boolean flag = userList.stream().anyMatch(p-> p.getUserId()==userId);
+	if(!flag)
 	{
-		throw new FlightException("Id not found");
+		throw new FlightException(" Id not found");
 	}
-		
-	
-	user = map.get(userId);
-		
-	  return user;
+	user = userList.get(userId);
+	return user;
+	  
 	}
 	@Override
 	public List<User> viewUser() {
-		Collection<User> col =map.values();
-		List<User> list = new ArrayList<>(col);
 		
-		
-		
+		List<User> list = userList.stream().collect(Collectors.toList());
 		return list;
 	}
 
 	@Override
-	public User updateUser(User user) 
+	public User updateUser(User user) throws FlightException 
 	{
 		
-		
-		
-		return null;
+		boolean flag = userList.stream().anyMatch(p-> p.getUserId()==user.getUserId());
+		if(flag==true)
+		{
+			user.setUserId(user.getUserId());
+		}
+		else
+		{
+			throw new FlightException("Id not found");
+		}
+		return user;
 	}
 
 	@Override
-	public void deleteUser(int userId) {
+	public void deleteUser(int userId) throws FlightException{
 		
-		int index = list.indexOf(userId);
-		list.remove(index);
+		//boolean flag = userList.stream().allMatch(p-> p.getUserId()==userId);
+		boolean flag = userList.stream().anyMatch(p-> p.getUserId()==userId);
+		if(!flag)
+		{
+			throw new FlightException(" Id not found");
+		}
+		userList.remove(userId);
+	
 		
 	}
 
