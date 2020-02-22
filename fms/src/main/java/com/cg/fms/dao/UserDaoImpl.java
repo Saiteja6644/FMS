@@ -14,7 +14,6 @@ import com.cg.fms.exception.FlightException;
 public class UserDaoImpl implements UserDao {
 
 	private List<User> userList;
-	//private Map<Integer,User> map;
 	
 	public UserDaoImpl()
 	{
@@ -37,6 +36,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User viewUser(int userId) throws FlightException {
+	
 		
 	User user = null;
 
@@ -45,7 +45,15 @@ public class UserDaoImpl implements UserDao {
 	{
 		throw new FlightException(" Id not found");
 	}
-	user = userList.get(userId);
+	List<User> list = userList.stream().collect(Collectors.toList());
+	for (User u : list) {
+	      if (u.getUserId()==userId) {
+	    	 int index = userList.indexOf(u);
+		     user =   userList.get(index);
+		     System.out.println(user.getUserName());
+		        break;
+	      }
+	}
 	return user;
 	  
 	}
@@ -58,12 +66,12 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User updateUser(User user) throws FlightException 
-	{
+	{    
+    boolean  flag = userList.stream().anyMatch(p-> p.getUserId()==user.getUserId());
 		
-		boolean flag = userList.stream().anyMatch(p-> p.getUserId()==user.getUserId());
-		if(flag==true)
+		if(flag)
 		{
-			user.setUserId(user.getUserId());
+			userList.add(user);
 		}
 		else
 		{
@@ -75,16 +83,22 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void deleteUser(int userId) throws FlightException{
 		
-		//boolean flag = userList.stream().allMatch(p-> p.getUserId()==userId);
-		boolean flag = userList.stream().anyMatch(p-> p.getUserId()==userId);
+		boolean flag = userList.stream().anyMatch(p -> p.getUserId()==userId);
 		if(!flag)
 		{
 			throw new FlightException(" Id not found");
+		      }
+		User user = userList.stream().filter(p-> p.getUserId()==userId).findFirst().get();
+		userList.remove(user);
 		}
-		userList.remove(userId);
-	
 		
-	}
 
+		
+		
+		       
+		}
+		     
 	
-}
+	
+	
+

@@ -22,7 +22,7 @@ public class Client
      {   
     	System.out.println("AdminType"); 
     	System.out.println("1.Add User");
-    	System.out.println("2.view usert");
+    	System.out.println("2.view user");
     	System.out.println("3.View list of user");
     	System.out.println("4.update user");
     	System.out.println("5.delete user");
@@ -30,8 +30,6 @@ public class Client
     	System.out.println("Enter your choice");
     	choice = sc.nextInt();
     	sc.nextLine();
-    	if(choice==1)
-    	{
     	switch(choice)
     	{
     	case 1 : System.out.println("Enter userName");
@@ -41,9 +39,9 @@ public class Client
     			 String password = sc.nextLine();
     			 System.out.println("Enter userPhone");
     			 int userPhone = sc.nextInt();
+    			 sc.nextLine();
     			 System.out.println("Enter email");
     			 String email = sc.nextLine();
-    			 sc.nextLine();
     			 user = new User();
     			 user.setUserName(name);
     			 user.setPassword(password);
@@ -60,14 +58,77 @@ public class Client
     			 {
     				 System.err.println(e.getMessage());
     			 }
+    			 break;
     			 
-    	case 2 : System.out.println("Enter userId");
-    	         
-    			 
+    	case 2 : 
+    		
+    			 System.out.println("Enter userId to view");
+    			 try
+    			 {
+    				 int id = sc.nextInt();
+    				user= userService.viewUser(id);
+    				System.out.println("id= "+user.getUserId()+" userName = "+user.getUserName()+" userPassword= "+user.getPassword()+" userEmail= "+user.getUserEmail());
+    			 }
+    			 catch(FlightException e)
+    			 {
+    				 System.err.println(e.getMessage());
+    			 }
+    			 break;
+    	case 3 : 
+    			try 
+    			{
+    			  userList =userService.viewUser();
+    			  for(User u : userList )
+    			  {
+    				  int id = u.getUserId();
+    				  String userName = u.getUserName();
+    				  double phone = u.getUserPhone();
+    				  String mail = u.getUserEmail();
+    				  System.out.println("id= "+id+" userName = "+userName+"userPhone= "+phone+" userEmail= "+mail);
+    			  }
+    			}
+    			catch(FlightException e)
+    			{
+    				System.err.println(e.getMessage());
+    			}
+    			break;
+    	     
+    	case 4 : System.out.println("Enter the id ");
+    			 int newId = sc.nextInt(); 
+    			 sc.nextLine();
+    			 System.out.println("Enter the name to be updated");
+    			 String newName = sc.nextLine();
+    			 User u1  = new User();
+    			 u1.setUserId(newId);
+    			 u1.setUserName(newName);
+    			 try
+    			 {
+    			user =	 userService.updateUser(u1);
+    			System.out.println("id = "+u1.getUserId()+" updatedName = "+u1.getUserName());
+    			 }
+    			 catch(FlightException e)
+    			 {
+    				 System.err.println(e.getMessage());
+    			 }
+    			 break;
+    	case 5 : System.out.println("Enter the id to be deleted");
+    	         int id = sc.nextInt();
+    	         try
+    	         {
+    	        	 userService.deleteUser(id);
+    	        	 System.out.println("deleted successfully");
+    	         }
+    	         catch(FlightException e)
+    	         {
+    	        	 System.err.println(e.getMessage());
+    	         }
+    	         break;
+    	case 6 : System.out.println("Thank You");
+    	          return;
     	}
     	
 
 }
 	}
 }
-}
+

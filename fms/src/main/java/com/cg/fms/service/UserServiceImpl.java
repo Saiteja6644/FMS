@@ -18,18 +18,20 @@ public class UserServiceImpl implements  UserService{
 	}
 	
 	
-//	public void validateUser(User user)
-//	{
-//		//String input = user.getUserName();
-//		
-//		
-//	}
-//	
+	public void validateUser(User user) throws FlightException
+	{
+		String mail = user.getUserEmail();
+		String pass = user.getPassword();
+		if(mail.matches("^[a-zA-z0-9+_.-]+@(.+)$") && pass.matches("[a-zA-Z0-9]+"));
+		throw new FlightException("Invalid input");
+		
+	}
+	
 	
 	@Override
 	public User addUser(User user) throws FlightException {
 		String name = user.getUserName();
-		
+		String mail = user.getUserEmail();
 		if(name.matches("[a-zA-Z]+"))
 		{
 			Random rand = new Random();
@@ -46,7 +48,7 @@ public class UserServiceImpl implements  UserService{
 
 	@Override
 	public User viewUser(int userId) throws FlightException{
-		// TODO Auto-generated method stub
+		
 		String str = String.valueOf(userId);
 		if(!str.matches("[0-9]{4}"))
 		{
@@ -57,14 +59,12 @@ public class UserServiceImpl implements  UserService{
 
 	@Override
 	public List<User> viewUser() throws FlightException {
-		// TODO Auto-generated method stub
-		
-		return userDao.viewUser();
+	
+			return userDao.viewUser();
 	}
 
 	@Override
 	public User updateUser(User user) throws FlightException{
-		// TODO Auto-generated method stub
 		String str = String.valueOf(user.getUserId());
 		if(!str.matches("[0-9][4]"))
 		{
@@ -76,12 +76,8 @@ public class UserServiceImpl implements  UserService{
 
 	@Override
 	public void deleteUser(int userId) throws FlightException{
-		// TODO Auto-generated method stub
-		String str = String.valueOf(userId);
-		if(!str.matches("[0-9][4]"))
-		{
-			throw new FlightException(" Id is not valid");
-		}
+		
+		userDao.deleteUser(userId);
 	
 	}
 

@@ -7,9 +7,9 @@ public class User {
 	private int userId;
 	private String userName;
 	private String password;
-	private int userPhone;
+	private double userPhone;
 	private String userEmail;
-	public User(String userType, int userId, String userName, String password, int userPhone,
+	public User(String userType, int userId, String userName, String password, double userPhone,
 			String userEmail) {
 		super();
 		this.userType = userType;
@@ -46,10 +46,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getUserPhone() {
+	public double getUserPhone() {
 		return userPhone;
 	}
-	public void setUserPhone(int userPhone) {
+	public void setUserPhone(double userPhone) {
 		this.userPhone = userPhone;
 	}
 	public String getUserEmail() {
@@ -58,7 +58,10 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
+	public String toString()
+	{
+		return userId+" "+userName+" "+password+" "+userPhone+" "+userEmail;
+	}
 	
 	
 	

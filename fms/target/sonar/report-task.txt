@@ -1,0 +1,6 @@
+projectKey=com.cg.fms:fms
+serverUrl=http://localhost:9000
+serverVersion=6.5.0.27846
+dashboardUrl=http://localhost:9000/dashboard/index/com.cg.fms:fms
+ceTaskId=AXBrQGy91vASd0BNvVVm
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXBrQGy91vASd0BNvVVm
