@@ -67,7 +67,7 @@ public class Client
     			 {
     				 int id = sc.nextInt();
     				user= userService.viewUser(id);
-    				System.out.println("id= "+user.getUserId()+" userName = "+user.getUserName()+" userPassword= "+user.getPassword()+" userEmail= "+user.getUserEmail());
+    				System.out.println("id= "+user.getUserId()+" userName = "+user.getUserName()+" userPassword= "+user.getPassword()+" userEmail= "+user.getUserEmail()+" userPhone = "+user.getUserPhone());
     			 }
     			 catch(FlightException e)
     			 {
