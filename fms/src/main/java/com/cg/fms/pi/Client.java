@@ -84,7 +84,7 @@ public class Client
     				  String userName = u.getUserName();
     				  double phone = u.getUserPhone();
     				  String mail = u.getUserEmail();
-    				  System.out.println("id= "+id+" userName = "+userName+"userPhone= "+phone+" userEmail= "+mail);
+    				  System.out.println("id= "+id+" userName = "+userName+" userPhone= "+phone+" userEmail= "+mail);
     			  }
     			}
     			catch(FlightException e)
@@ -98,13 +98,10 @@ public class Client
     			 sc.nextLine();
     			 System.out.println("Enter the name to be updated");
     			 String newName = sc.nextLine();
-    			 User u1  = new User();
-    			 u1.setUserId(newId);
-    			 u1.setUserName(newName);
     			 try
     			 {
-    			user =	 userService.updateUser(u1);
-    			System.out.println("id = "+u1.getUserId()+" updatedName = "+u1.getUserName());
+    			user =	 userService.updateUser(user, newName);
+    			System.out.println("updated successfuly");
     			 }
     			 catch(FlightException e)
     			 {

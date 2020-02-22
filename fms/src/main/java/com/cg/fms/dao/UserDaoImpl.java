@@ -65,13 +65,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User updateUser(User user) throws FlightException 
+	public User updateUser(User user, String userName) throws FlightException 
 	{    
     boolean  flag = userList.stream().anyMatch(p-> p.getUserId()==user.getUserId());
 		
 		if(flag)
 		{
-			userList.add(user);
+			user.setUserName(userName);
 		}
 		else
 		{

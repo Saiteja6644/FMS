@@ -63,9 +63,9 @@ public class UserServiceImpl implements  UserService{
 	}
 
 	@Override
-	public User updateUser(User user) throws FlightException{
+	public User updateUser(User user , String userName) throws FlightException{
 		
-		return userDao.updateUser(user);
+		return userDao.updateUser(user, userName);
 	}
 
 	@Override
