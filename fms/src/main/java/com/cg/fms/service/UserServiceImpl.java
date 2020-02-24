@@ -21,8 +21,8 @@ public class UserServiceImpl implements  UserService{
 	public void validateUser(User user) throws FlightException
 	{
 		String mail = user.getUserEmail();
-		String pass = user.getPassword();
-		if(mail.matches("^[a-zA-z0-9+_.-]+@(.+)$") && pass.matches("[a-zA-Z0-9]+"));
+		String password = user.getPassword();
+		if(mail.matches("^[a-zA-z0-9+_.-]+@(.+)$") && password.matches("[a-zA-Z0-9]+"));
 		throw new FlightException("Invalid input");
 		
 	}

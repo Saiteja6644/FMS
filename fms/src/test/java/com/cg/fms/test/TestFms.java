@@ -16,9 +16,7 @@ import com.cg.fms.exception.FlightException;
 class TestFms {
 
 	UserDao dao =null;
-	private int userId; 
-	private List<User> userList;
-	private String userName;
+	
 	private User user=null;
 	
    @BeforeEach
@@ -46,7 +44,7 @@ class TestFms {
     {
     	 User user =new User("Admin",1001,"Sai","saiteja",632541,"sai@gmail.com");
 
-  	     User u=dao.addUser(user);
+  	      dao.addUser(user);
   	     
     	List<User> list = dao.viewUser();
     	assertEquals(1,list.size());

@@ -28,8 +28,16 @@ public class Client
     	System.out.println("5.delete user");
     	System.out.println("6.Exist");
     	System.out.println("Enter your choice");
+    	try
+    	{
     	choice = sc.nextInt();
     	sc.nextLine();
+    	}
+    	catch(Exception e)
+    	{
+    		System.err.println("Enter valid choice");
+    		sc.nextLine();
+    	}
     	switch(choice)
     	{
     	case 1 : System.out.println("Enter userName");
@@ -38,7 +46,7 @@ public class Client
     			 System.out.println("Enter password");
     			 String password = sc.nextLine();
     			 System.out.println("Enter userPhone");
-    			 int userPhone = sc.nextInt();
+    			 long userPhone = sc.nextLong();
     			 sc.nextLine();
     			 System.out.println("Enter email");
     			 String email = sc.nextLine();
@@ -49,9 +57,9 @@ public class Client
     			 user.setUserEmail(email);
     			 try
     			 {
-    				User u ; 
-    				 u = userService.addUser(user);
-    				int id = u.getUserId();
+    				User user1 ; 
+    				 user1 = userService.addUser(user);
+    				int id = user1.getUserId();
     				System.out.println(" Added successfully " +id );
     			 }
     			 catch(FlightException e)
@@ -61,10 +69,9 @@ public class Client
     			 break;
     			 
     	case 2 : 
-    		
-    			 System.out.println("Enter userId to view");
     			 try
     			 {
+    			 System.out.println("Enter userId to view");    			
     				 int id = sc.nextInt();
     				user= userService.viewUser(id);
     				System.out.println("id= "+user.getUserId()+" userName = "+user.getUserName()+" userPassword= "+user.getPassword()+" userEmail= "+user.getUserEmail()+" userPhone = "+user.getUserPhone());

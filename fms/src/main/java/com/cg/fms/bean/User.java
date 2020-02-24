@@ -7,9 +7,9 @@ public class User {
 	private int userId;
 	private String userName;
 	private String password;
-	private double userPhone;
+	private long userPhone;
 	private String userEmail;
-	public User(String userType, int userId, String userName, String password, double userPhone,
+	public User(String userType, int userId, String userName, String password, long userPhone,
 			String userEmail) {
 		super();
 		this.userType = userType;
@@ -49,7 +49,7 @@ public class User {
 	public double getUserPhone() {
 		return userPhone;
 	}
-	public void setUserPhone(double userPhone) {
+	public void setUserPhone(long userPhone) {
 		this.userPhone = userPhone;
 	}
 	public String getUserEmail() {
