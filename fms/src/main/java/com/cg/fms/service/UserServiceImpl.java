@@ -18,18 +18,21 @@ public class UserServiceImpl implements  UserService{
 	}
 	
 	
-	public void validateUser(User user) throws FlightException
+	public boolean validateUser(User user) throws FlightException
 	{
 		String mail = user.getUserEmail();
 		String password = user.getPassword();
-		if(mail.matches("^[a-zA-z0-9+_.-]+@(.+)$") && password.matches("[a-zA-Z0-9]+"));
-		throw new FlightException("Invalid input");
-		
+		if(mail.matches("^[a-zA-z0-9+_.-]+@(.+)$") || password.matches("[a-zA-Z0-9]+"))
+			return true;
+		else
+			throw new FlightException("Invalid input");   
 	}
 	
 	
 	@Override
 	public User addUser(User user) throws FlightException {
+		if(validateUser(user))
+		{
 		String name = user.getUserName();
 		if(name.matches("[a-zA-Z]+"))
 		{
@@ -41,7 +44,7 @@ public class UserServiceImpl implements  UserService{
 		{
 			throw new FlightException(" Name should be characters");
 		}
-
+		}
 		return userDao.addUser(user);
 	}
 

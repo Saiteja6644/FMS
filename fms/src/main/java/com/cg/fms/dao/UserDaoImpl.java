@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 	      if (u.getUserId()==userId) {
 	    	 int index = userList.indexOf(u);
 		     user =   userList.get(index);
-		     System.out.println(user.getUserName());
+		     System.out.println(user.getUserName());  
 		        break;
 	      }
 	}

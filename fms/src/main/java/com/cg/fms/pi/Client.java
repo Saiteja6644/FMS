@@ -40,7 +40,8 @@ public class Client
     	}
     	switch(choice)
     	{
-    	case 1 : System.out.println("Enter userName");
+    	case 1 :   
+    			 System.out.println("Enter userName");
     			 String name = sc.nextLine();
     			 //sc.nextLine();
     			 System.out.println("Enter password");

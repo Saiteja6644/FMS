@@ -7,6 +7,7 @@ import com.cg.fms.exception.FlightException;
 
 public interface UserService {
 	
+	public boolean validateUser(User user) throws FlightException;
 	public  User addUser(User user) throws FlightException; 
 	public User viewUser(int userId) throws FlightException;
 	public List<User> viewUser() throws FlightException;

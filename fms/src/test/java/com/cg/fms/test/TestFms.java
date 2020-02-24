@@ -29,7 +29,7 @@ class TestFms {
    void testAddUser() throws FlightException
    {
 	  
-	   User user =new User("Admin",1001,"Sai","saiteja",632541,"sai@gmail.com");
+	   User user =new User("Admin",1001,"ai","saiteja",632541,"sai@gmail.com");
 
 	   User u=dao.addUser(user);
 
